@@ -17,6 +17,10 @@
     align-items: center;
     justify-content: center;
     padding: 20px 0;
-    height: 100vh;
+    height: 90vh;
+}
+
+h3{
+    color: #0b79e0;
 }
 </style>

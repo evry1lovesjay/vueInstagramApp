@@ -101,9 +101,17 @@ const goToUsersProfile = ()=>{
         font-weight: 700;
     }
 
+    .a-layout-header{
+            padding: 0 0;
+        }
+
     @media screen and (max-width: 768px){
         .main-title{
             display: none;
+        }
+
+        .a-layout-header{
+            padding: 0 0;
         }
 
         .a-input-search{
@@ -127,6 +135,11 @@ const goToUsersProfile = ()=>{
 
         .a-input-search{
             width: 130px;
+        }
+
+        .right-content button{
+        margin: 7px;
+        padding: 0 9px;
         }
     }
 

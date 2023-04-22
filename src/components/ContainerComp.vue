@@ -15,7 +15,7 @@
             .container{
             width: 100vw;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px;
         } 
     }
 
