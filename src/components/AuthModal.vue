@@ -20,6 +20,12 @@ const userCredentials = reactive({
     username: "",
 })
 
+const userCredentialsNormal = reactive({
+    email: "",
+    password: "",
+    username: "",
+})
+
 const showModal = () => { 
     visible.value = true;
 
@@ -41,7 +47,11 @@ const handleOk = async () => {
         })
 
     } else{
-        await userStore.handleSignup(userCredentials)
+        await userStore.handleSignup({
+            password: userCredentials.password,
+            email: userCredentials.email,
+            username: userCredentials.username.toLowerCase(),
+        })
     }
     if(user.value){
         visible.value = false;

@@ -19,7 +19,7 @@ const searchField = ref("")
 
 const onSearch = () =>{
     if(searchField.value){
-        router.push(`/profile/${searchField.value}`)
+        router.push(`/profile/${searchField.value.toLowerCase()}`)
         searchField.value =""
     }
 }
