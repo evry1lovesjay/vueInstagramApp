@@ -34,15 +34,16 @@ const goToUsersProfile = ()=>{
 </script>
 
 <template>
-    <a-layout-header>
+    <a-layout-header class="a-layout-header">
         <ContainerComp> 
             <div class="nav-container">
                 <div class="left-content">
-                    <RouterLink to="/"> Vinstagram</RouterLink>
-                    <a-input-search
+                    <RouterLink to="/" class="main-title"> Vinstagram</RouterLink>
+                    <RouterLink to="/" class="sub-title"> VN</RouterLink>
+                    <a-input-search class="a-input-search"
                     v-model:value="searchField"
                     placeholder="search username..."
-                    style="width: 200px"
+                    
                     @search="onSearch"
                     />
                 </div>
@@ -89,5 +90,47 @@ const goToUsersProfile = ()=>{
 
     .right-content button{
         margin: 5px;
+    }
+
+    .a-input-search{
+            width: 200px;
+        }
+
+    .main-title, .sub-title{
+        font-weight: 900;
+    }
+
+    @media screen and (max-width: 768px){
+        .main-title{
+            display: none;
+        }
+
+        .a-input-search{
+            width: 150px;
+        }
+    }
+
+    @media screen and (max-width: 480px){
+        .main-title{
+            display: none;
+        }
+
+        
+
+        .a-layout-header{
+            padding: 0 0;
+        }
+
+        .a-input-search{
+            width: 130px;
+        }
+    }
+
+    @media screen and (min-width: 768px){
+        .sub-title{
+            display: none;
+        }
+
+        
     }
 </style>
