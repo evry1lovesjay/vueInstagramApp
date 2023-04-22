@@ -54,8 +54,8 @@ const goToUsersProfile = ()=>{
                     <AuthModal :isLogin="true"/>
                     </div>
                     <div class="right-content" v-else>
-                        <a-button type="primary" @click="goToUsersProfile">Profile</a-button>
-                        <a-button @click="handleLogout" type="primary">LogOut</a-button>
+                        <a-button class="navbar-btn" type="primary" @click="goToUsersProfile">Profile</a-button>
+                        <a-button class="navbar-btn" @click="handleLogout" type="primary">LogOut</a-button>
                     </div>
                 </div>
                 
@@ -80,7 +80,7 @@ const goToUsersProfile = ()=>{
     }
 
     .left-content a{
-        margin-right: 10px;
+        margin: 0 15px 0 15px ;
     }
 
     .right-content{
@@ -89,7 +89,8 @@ const goToUsersProfile = ()=>{
     }
 
     .right-content button{
-        margin: 5px;
+        margin: 7px;
+        /* padding: 0 8px; */
     }
 
     .a-input-search{
@@ -97,7 +98,7 @@ const goToUsersProfile = ()=>{
         }
 
     .main-title, .sub-title{
-        font-weight: 900;
+        font-weight: 700;
     }
 
     @media screen and (max-width: 768px){
@@ -108,14 +109,17 @@ const goToUsersProfile = ()=>{
         .a-input-search{
             width: 150px;
         }
+
+        .right-content button{
+        margin: 7px;
+        padding: 0 9px;
+        }
     }
 
     @media screen and (max-width: 480px){
         .main-title{
             display: none;
         }
-
-        
 
         .a-layout-header{
             padding: 0 0;
