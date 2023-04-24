@@ -1,10 +1,50 @@
 <script setup>
 import {RouterLink, useRouter} from "vue-router"
 import ContainerComp from "./ContainerComp.vue"
-import {ref} from "vue"
+import {ref, computed, onMounted} from "vue"
 import AuthModal from "./AuthModal.vue";
 import {useUserStore} from "../stores/usersStore"
 import { storeToRefs } from "pinia";
+import { supabase } from '../supabase';
+
+// -------------------------------------------
+
+    const countries = ref([])
+
+
+    const fetchUsers = async ()=>{
+
+      const {data: usernames} = await supabase.from("users").select("username")
+
+      countries.value = usernames
+    }
+
+    onMounted(() => {
+
+    fetchUsers()
+
+    })
+
+// -------------------------------------------
+  
+//   let searchTerm = ref('')
+  
+  const searchCountries = computed(() => {
+    if (searchField.value === '') {
+      return []
+    }
+  
+    let matches = 0
+  
+    return countries.value.filter(country => {
+      if (country.username.toLowerCase().includes(searchField.value.toLowerCase()) && matches < 10) {
+        matches++
+        return country
+      }
+    })
+  });
+
+
 
 
 const userStore = useUserStore()
@@ -62,6 +102,29 @@ const goToUsersProfile = ()=>{
             </div>
         </ContainerComp>
     </a-layout-header>
+
+    <ul
+          v-if="searchCountries.length"
+          class="w-full rounded bg-white border border-gray-300 px-4 py-2 space-y-1 absolute z-10"
+        >
+          <!-- <li class="px-1 pt-1 pb-2 font-bold border-b border-gray-200">
+            Showing {{ searchCountries.length }} of {{ countries.length }} results
+          </li> -->
+          <!-- <li
+              v-for="country in searchCountries"
+              :key="country.name"
+              @click="selectCountry(country.username)"
+              class="cursor-pointer hover:bg-gray-100 p-1 list-none"
+          > -->
+          <li
+              v-for="country in searchCountries"
+              :key="country.name"
+              class="cursor-pointer hover:bg-gray-100 p-1 list-none"
+          >
+            {{ country.username }}
+          </li>
+        </ul>
+
 </template>
 
 <style scoped>

@@ -5,6 +5,9 @@ import NavBar from './components/NavBar.vue';
 import { useUserStore } from './stores/usersStore';
 
 
+
+
+
 const userStore = useUserStore()
 
 onMounted(()=>{

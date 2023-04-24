@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import NotFoundView from '../views/404View.vue'
+import AutoCompleteView from '../views/AutoCompleteView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +20,11 @@ const router = createRouter({
       path: '/profile/:username',
       name: 'profile',
       component: ProfileView
+    },
+    {
+      path: '/auto',
+      name: 'auto',
+      component: AutoCompleteView
     },
     {
       path: "/:catchall(.*)*",
