@@ -103,27 +103,37 @@ const goToUsersProfile = ()=>{
         </ContainerComp>
     </a-layout-header>
 
-    <ul
+    <!-- <ul
           v-if="searchCountries.length"
           class="w-full rounded bg-white border border-gray-300 px-4 py-2 space-y-1 absolute z-10"
-        >
-          <!-- <li class="px-1 pt-1 pb-2 font-bold border-b border-gray-200">
-            Showing {{ searchCountries.length }} of {{ countries.length }} results
-          </li> -->
-          <!-- <li
-              v-for="country in searchCountries"
-              :key="country.name"
-              @click="selectCountry(country.username)"
-              class="cursor-pointer hover:bg-gray-100 p-1 list-none"
-          > -->
-          <li
-              v-for="country in searchCountries"
-              :key="country.name"
-              class="cursor-pointer hover:bg-gray-100 p-1 list-none"
-          >
-            {{ country.username }}
-          </li>
-        </ul>
+        > -->
+        
+        <div v-if="searchCountries.length" class="dropdown-menu">
+            <ul
+            
+            >
+            <!-- <li class="px-1 pt-1 pb-2 font-bold border-b border-gray-200">
+                Showing {{ searchCountries.length }} of {{ countries.length }} results
+            </li> -->
+            <!-- <li
+                v-for="country in searchCountries"
+                :key="country.name"
+                @click="selectCountry(country.username)"
+                class="cursor-pointer hover:bg-gray-100 p-1 list-none"
+                > -->
+                <!-- <li
+                    v-for="country in searchCountries"
+                    :key="country.name"
+                    class="cursor-pointer hover:bg-gray-100 p-1 list-none"
+                    > -->
+                    <li
+                    v-for="country in searchCountries"
+                    :key="country.name"
+                    >
+                    {{ country.username }}
+                </li>
+            </ul>
+        </div>
 
 </template>
 
@@ -213,4 +223,45 @@ const goToUsersProfile = ()=>{
 
         
     }
+
+
+
+
+    /* Style the user list */
+
+    .dropdown-menu {
+  position: absolute; /* or position: fixed; */
+  top: 64px;
+  left: 70px;
+  z-index: 9999; /* set a high z-index to ensure the dropdown is displayed above other content */
+  min-width: 200px; /* set a minimum width for the dropdown */
+  padding: 8px;
+  background-color: #fff;
+  border: 0.1px solid #ccc;
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  /* list-style: none; */
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li:hover {
+  background-color: #f9f9f9;
+}
+
+
+
 </style>
