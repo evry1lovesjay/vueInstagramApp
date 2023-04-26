@@ -44,6 +44,15 @@ import { supabase } from '../supabase';
     })
   });
 
+//   const selectCountry = (country) => {
+//     selectedCountry.value = country
+//     searchTerm.value = ''
+//   }
+
+  const addToInput = (item) => {
+      searchField.value = item;
+    };
+
 
 
 
@@ -129,6 +138,7 @@ const goToUsersProfile = ()=>{
                     <li
                     v-for="country in searchCountries"
                     :key="country.name"
+                    @click="addToInput(country.username)"
                     >
                     {{ country.username }}
                 </li>
@@ -232,12 +242,12 @@ const goToUsersProfile = ()=>{
     .dropdown-menu {
   position: absolute; /* or position: fixed; */
   top: 64px;
-  left: 70px;
+  left: 20%;
   z-index: 9999; /* set a high z-index to ensure the dropdown is displayed above other content */
-  min-width: 200px; /* set a minimum width for the dropdown */
+  min-width: 60%; /* set a minimum width for the dropdown */
   padding: 8px;
   background-color: #fff;
-  border: 0.1px solid #ccc;
+  border: 1px solid #0b79e0;
   border-radius: 0px 0px 10px 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
