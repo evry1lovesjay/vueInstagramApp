@@ -9,14 +9,14 @@ import { supabase } from '../supabase';
 
 // -------------------------------------------
 
-    const countries = ref([])
+    const users = ref([])
 
 
     const fetchUsers = async ()=>{
 
-      const {data: usernames} = await supabase.from("users").select("username")
+      const {data: usernames} = await supabase.from("users").select("username").limit(100)
 
-      countries.value = usernames
+      users.value = usernames
     }
 
     onMounted(() => {
@@ -29,28 +29,30 @@ import { supabase } from '../supabase';
   
 //   let searchTerm = ref('')
   
-  const searchCountries = computed(() => {
+  const searchUsers = computed(() => {
     if (searchField.value === '') {
       return []
     }
   
     let matches = 0
   
-    return countries.value.filter(country => {
-      if (country.username.toLowerCase().includes(searchField.value.toLowerCase()) && matches < 10) {
+    return users.value.filter(user => {
+      if (user.username.toLowerCase().includes(searchField.value.toLowerCase()) && matches < 10) {
         matches++
-        return country
+        return user
       }
     })
   });
 
-//   const selectCountry = (country) => {
-//     selectedCountry.value = country
+//   const selectUser = (user) => {
+//     selectedUser.value = user
 //     searchTerm.value = ''
 //   }
 
   const addToInput = (item) => {
       searchField.value = item;
+      router.push(`/profile/${searchField.value.toLowerCase()}`)
+      searchField.value =""
     };
 
 
@@ -92,7 +94,7 @@ const goToUsersProfile = ()=>{
                     <a-input-search class="a-input-search"
                     v-model:value="searchField"
                     placeholder="search username..."
-                    
+                    v-if="user"
                     @search="onSearch"
                     />
                 </div>
@@ -113,34 +115,34 @@ const goToUsersProfile = ()=>{
     </a-layout-header>
 
     <!-- <ul
-          v-if="searchCountries.length"
+          v-if="searchUsers.length"
           class="w-full rounded bg-white border border-gray-300 px-4 py-2 space-y-1 absolute z-10"
         > -->
         
-        <div v-if="searchCountries.length" class="dropdown-menu">
+        <div v-if="searchUsers.length" class="dropdown-menu">
             <ul
             
             >
             <!-- <li class="px-1 pt-1 pb-2 font-bold border-b border-gray-200">
-                Showing {{ searchCountries.length }} of {{ countries.length }} results
+                Showing {{ searchUsers.length }} of {{ users.length }} results
             </li> -->
             <!-- <li
-                v-for="country in searchCountries"
-                :key="country.name"
-                @click="selectCountry(country.username)"
+                v-for="user in searchUsers"
+                :key="user.name"
+                @click="selectUser(user.username)"
                 class="cursor-pointer hover:bg-gray-100 p-1 list-none"
                 > -->
                 <!-- <li
-                    v-for="country in searchCountries"
-                    :key="country.name"
+                    v-for="user in searchUsers"
+                    :key="user.name"
                     class="cursor-pointer hover:bg-gray-100 p-1 list-none"
                     > -->
                     <li
-                    v-for="country in searchCountries"
-                    :key="country.name"
-                    @click="addToInput(country.username)"
+                    v-for="user in searchUsers"
+                    :key="user.name"
+                    @click="addToInput(user.username)"
                     >
-                    {{ country.username }}
+                    {{ user.username }}
                 </li>
             </ul>
         </div>
