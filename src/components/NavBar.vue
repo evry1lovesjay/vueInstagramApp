@@ -61,7 +61,9 @@ import { supabase } from '../supabase';
     };
 
 
-const onSearch = () =>{
+const onSearch = (event) =>{
+    searchField.value = event.target.value;
+
     if(searchField.value){
         router.push(`/profile/${searchField.value.toLowerCase()}`)
         searchField.value =""
@@ -91,7 +93,6 @@ const goToUsersProfile = ()=>{
                     <a-input-search class="a-input-search"
                     placeholder="search username..."
                     v-if="user"
-                    @search="onSearch"
                     @input="handleSearchField"
                     />
                 </div>
@@ -104,7 +105,6 @@ const goToUsersProfile = ()=>{
                     placeholder="search username..."
                     v-if="user"
                     @search="onSearch"
-                    @input="searchField"
                     />
                 </div> -->
                 
