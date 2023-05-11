@@ -68,6 +68,10 @@ const onSearch = () =>{
     }
 }
 
+const handleSearchField = (event) => {
+      searchField.value = event.target.value;
+    };
+
 const handleLogout= async ()=>{
     await userStore.handleLogout()
 }
@@ -88,7 +92,7 @@ const goToUsersProfile = ()=>{
                     placeholder="search username..."
                     v-if="user"
                     @search="onSearch"
-                    @input="searchField = $event.target.value"
+                    @input="handleSearchField"
                     />
                 </div>
 
