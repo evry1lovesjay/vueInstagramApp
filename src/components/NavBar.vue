@@ -11,6 +11,16 @@ import { supabase } from '../supabase';
 
     const users = ref([])
 
+    const userStore = useUserStore()
+
+    const {user, loadingUser} = storeToRefs(userStore)
+
+    const router = useRouter()
+
+    const searchField = ref("")
+
+    // const isAuthenticated = ref(false)
+
 
     const fetchUsers = async ()=>{
 
@@ -44,29 +54,12 @@ import { supabase } from '../supabase';
     })
   });
 
-//   const selectUser = (user) => {
-//     selectedUser.value = user
-//     searchTerm.value = ''
-//   }
-
   const addToInput = (item) => {
       searchField.value = item;
       router.push(`/profile/${searchField.value.toLowerCase()}`)
       searchField.value =""
     };
 
-
-
-
-const userStore = useUserStore()
-
-const {user, loadingUser} = storeToRefs(userStore)
-
-const router = useRouter()
-
-const searchField = ref("")
-
-// const isAuthenticated = ref(false)
 
 const onSearch = () =>{
     if(searchField.value){
@@ -114,29 +107,9 @@ const goToUsersProfile = ()=>{
         </ContainerComp>
     </a-layout-header>
 
-    <!-- <ul
-          v-if="searchUsers.length"
-          class="w-full rounded bg-white border border-gray-300 px-4 py-2 space-y-1 absolute z-10"
-        > -->
         
         <div v-if="searchUsers.length" class="dropdown-menu">
-            <ul
-            
-            >
-            <!-- <li class="px-1 pt-1 pb-2 font-bold border-b border-gray-200">
-                Showing {{ searchUsers.length }} of {{ users.length }} results
-            </li> -->
-            <!-- <li
-                v-for="user in searchUsers"
-                :key="user.name"
-                @click="selectUser(user.username)"
-                class="cursor-pointer hover:bg-gray-100 p-1 list-none"
-                > -->
-                <!-- <li
-                    v-for="user in searchUsers"
-                    :key="user.name"
-                    class="cursor-pointer hover:bg-gray-100 p-1 list-none"
-                    > -->
+            <ul>
                     <li
                     v-for="user in searchUsers"
                     :key="user.name"
@@ -146,6 +119,7 @@ const goToUsersProfile = ()=>{
                 </li>
             </ul>
         </div>
+
 
 </template>
 
@@ -233,10 +207,7 @@ const goToUsersProfile = ()=>{
             display: none;
         }
 
-        
     }
-
-
 
 
     /* Style the user list */
@@ -273,7 +244,6 @@ li:last-child {
 li:hover {
   background-color: #f9f9f9;
 }
-
 
 
 </style>
