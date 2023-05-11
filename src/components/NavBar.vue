@@ -85,13 +85,24 @@ const goToUsersProfile = ()=>{
                     <RouterLink to="/" class="main-title"> Vinstagram</RouterLink>
                     <RouterLink to="/" class="sub-title"> VN</RouterLink>
                     <a-input-search class="a-input-search"
+                    placeholder="search username..."
+                    v-if="user"
+                    @search="onSearch"
+                    @input="searchField = $event.target.value"
+                    />
+                </div>
+
+                <!-- <div class="left-content">
+                    <RouterLink to="/" class="main-title"> Vinstagram</RouterLink>
+                    <RouterLink to="/" class="sub-title"> VN</RouterLink>
+                    <a-input-search class="a-input-search"
                     v-model:value="searchField"
                     placeholder="search username..."
                     v-if="user"
                     @search="onSearch"
-                    @input="searchField= $event.target.value"
+                    @input="searchField"
                     />
-                </div>
+                </div> -->
                 
                 <div class="content" v-if="!loadingUser">
                     <div class="right-content" v-if="!user">
