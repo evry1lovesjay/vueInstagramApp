@@ -62,7 +62,6 @@ import { supabase } from '../supabase';
 
 
 const onSearch = (event) =>{
-    searchField.value = event.target.value;
 
     if(searchField.value){
         router.push(`/profile/${searchField.value.toLowerCase()}`)
@@ -70,9 +69,9 @@ const onSearch = (event) =>{
     }
 }
 
-const handleSearchField = (event) => {
-      searchField.value = event.target.value;
-    };
+// const handleSearchField = (event) => {
+//       searchField.value = event.target.value;
+//     };
 
 const handleLogout= async ()=>{
     await userStore.handleLogout()
@@ -87,7 +86,7 @@ const goToUsersProfile = ()=>{
     <a-layout-header class="a-layout-header">
         <ContainerComp> 
             <div class="nav-container">
-                <div class="left-content">
+                <!-- <div class="left-content">
                     <RouterLink to="/" class="main-title"> Vinstagram</RouterLink>
                     <RouterLink to="/" class="sub-title"> VN</RouterLink>
                     <a-input-search class="a-input-search"
@@ -96,9 +95,9 @@ const goToUsersProfile = ()=>{
                     @input="handleSearchField"
                     :value="searchField"
                     />
-                </div>
+                </div> -->
 
-                <!-- <div class="left-content">
+                <div class="left-content">
                     <RouterLink to="/" class="main-title"> Vinstagram</RouterLink>
                     <RouterLink to="/" class="sub-title"> VN</RouterLink>
                     <a-input-search class="a-input-search"
@@ -107,7 +106,7 @@ const goToUsersProfile = ()=>{
                     v-if="user"
                     @search="onSearch"
                     />
-                </div> -->
+                </div>
                 
                 <div class="content" v-if="!loadingUser">
                     <div class="right-content" v-if="!user">
