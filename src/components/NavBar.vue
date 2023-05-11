@@ -89,6 +89,7 @@ const goToUsersProfile = ()=>{
                     placeholder="search username..."
                     v-if="user"
                     @search="onSearch"
+                    @input="searchField= $event.target.value"
                     />
                 </div>
                 
