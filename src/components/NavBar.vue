@@ -94,6 +94,7 @@ const goToUsersProfile = ()=>{
                     placeholder="search username..."
                     v-if="user"
                     @input="handleSearchField"
+                    :value="searchField"
                     />
                 </div>
 
